@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<main class="container">
+    <div class="row">
+        <section class="col-md-4 offset-md-4 mt-5">
+            <form action="/signin/" method="POST" class="card card-body">
+                
+            
+                {{error}}
+                {% csrf_token %}
+                <h1 class="text-center">Signin</h1>
+            
+                {{error}}
+                <!-- Action envia los datos del formulario a esa ruta, POST es un metodo http que lo envia de forma oculta a los campos, osea que no lo muestra en la url, si no se pone un action lo envia a la misma ruta en la que está, llega a la misma view-->
+                <!-- JINJA es el motor de plantilla de DJANGO que permite usar la sintaxis dentro de html siguiente-->
+                {% csrf_token %} <!-- Crea un token para evitar ser suplantado el formulario-->
+            
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Write your username">
+                </div>
+            
+                <div class="mb-3">
+                    <label for="password">Paswword:</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Write your paswword">
+                </div>
+            
+            
+                <button class=" btn btn-primary">
+                    Signin
+                </button>
+
+                <hr>
+                <a class="text-center" href="/signup/">Create new account</a>
+                </p>
+                
+                
+            </form>
+        </section>
+    </div>
+</main>
+
+{% endblock %}
