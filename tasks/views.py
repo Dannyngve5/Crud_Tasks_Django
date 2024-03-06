@@ -53,7 +53,8 @@ def tasks(request):
 def tasks_completed(request):
     tasks = Task.objects.filter(user = request.user, datecompleted__isnull=False).order_by('-datecompleted') #Usa un filtro para mirar cual muestra
     return render(request, 'tasks.html', {
-        'tasks' : tasks
+        'tasks' : tasks,
+        'completed_page': True
     } )
 
 @login_required
@@ -111,7 +112,7 @@ def delete_task(request, task_id):
     task = get_object_or_404(Task, pk = task_id, user = request.user)
     if request.method == 'POST':
         task.delete()
-        return redirect('tasks')
+        return redirect('tasks_completed')
     
 @login_required
 def signout(request):
